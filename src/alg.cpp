@@ -75,7 +75,7 @@ int eval(std::string post) {
             int b = stack1.get();
             stack1.pop();
             int a = stack1.get();
-            stack1.pop();            
+            stack1.pop();
             if (post[i] == '+')
                 stack1.push(a + b);
             if (post[i] == '-')

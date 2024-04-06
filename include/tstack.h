@@ -4,6 +4,7 @@
 
 template<typename T, int size>
 class TStack {
+private:
     T* _stack;
     int _max_size;
     int cur;

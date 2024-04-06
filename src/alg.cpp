@@ -71,8 +71,7 @@ int eval(std::string post) {
                 stack1.push(atoi(rez.c_str()));
                 rez = "";
             }
-        }
-        else {
+        } else {
             int b = stack1.get();
             stack1.pop();
             int a = stack1.get();

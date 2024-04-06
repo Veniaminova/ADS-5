@@ -3,13 +3,13 @@
 #include <map>
 #include "tstack.h"
 
-int priority_operation(char c) {
+int p_o(char c) {
     if (c == '+' || c == '-') return 1;
     if (c == '*' || c == '/') return 2;
     return 0;
 }
 std::string infx2pstfx(std::string inf) {
-    string res = "";
+    std::string res = "";
     TStack <char, 100> st;
     for (int i = 0; i < inf.size(); ++i) {
         if (isdigit(inf[i])) {
@@ -29,9 +29,9 @@ std::string infx2pstfx(std::string inf) {
                 st.pop();
             }
             st.pop();
-        } else if (priority_operation(inf[i]) != -1) {
-            int cur_priority = priority_operation(inf[i]);
-            while (!st.empty() && cur_priority <= priority_operation(st.top())) {
+        } else if (p_o(inf[i]) != -1) {
+            int cur_priority = p_o(inf[i]);
+            while (!st.empty() && cur_priority <= p_o(st.top())) {
                 res += st.top();
                 res += " ";
                 st.pop();

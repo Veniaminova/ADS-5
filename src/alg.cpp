@@ -4,56 +4,14 @@
 #include "tstack.h"
 
 int priority_operation(char c) {
-    if (c == '(') {
-        return -1;
-    }
-    if (c == '*' || c == '/') {
-        return 1;
-    }
-    if (c == '+' || c == '-') {
-        return 0;
-    }
-    return 10;
+    if (c == '+' || c == '-') return 1;
+    if (c == '*' || c == '/') return 2;
+    return 0;
 }
-
-int eval(std::string post) {
-    int a = 0;
-    int b = 0;
-    bool flag_first = true;
-    for (int i = 0; i < post.size(); ++i) {
-        if (isspace(post[i])) continue;
-        if (isdigit(post[i])) {
-            int t = 0;
-            while (isdigit(post[i]) && i != post.size()) {
-                t *= 10;
-                t += post[i] - '0';
-                ++i;
-            }
-            if (flag_first) {
-                a = t;
-                flag_first = false;
-            } else {
-                b = t;
-            }
-        } else {
-            if (post[i] == '+')
-                a = a + b;
-            if (post[i] == '-')
-                a = a - b;
-            if (post[i] == '*')
-                a = a * b;
-            if (post[i] == '/')
-                a = a / b;
-        }
-    }
-    return a;
-}
-
 std::string infx2pstfx(std::string inf) {
     string res = "";
     Stack <char, 100> st;
     for (int i = 0; i < inf.size(); ++i) {
-        if (isspace(inf[i])) continue;
         if (isdigit(inf[i])) {
             while (isdigit(inf[i]) && i != inf.size()) {
                 res += inf[i];
@@ -87,4 +45,32 @@ std::string infx2pstfx(std::string inf) {
         st.pop();
     }
     return res;
+}
+int eval(std::string post) {
+    int a = 0;
+    int b = 0;
+    bool flag_first = true;
+    for (int i = 0; i < post.size(); ++i) {
+        if (isspace(post[i])) continue;
+        if (isdigit(post[i])) {
+            int t = 0;
+            while (isdigit(post[i]) && i != post.size()) {
+                t *= 10;
+                t += post[i] - '0';
+                ++i;
+            }
+            if (flag_first) {
+                a = t;
+                flag_first = false;
+            } else {
+                b = t;
+            }
+        } else {
+            if (post[i] == '+') a = a + b;
+            if (post[i] == '-') a = a - b;
+            if (post[i] == '*') a = a * b;
+            if (post[i] == '/') a = a / b;
+        }
+    }
+    return a;
 }

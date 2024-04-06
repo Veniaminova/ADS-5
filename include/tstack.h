@@ -4,35 +4,37 @@
 
 template<typename T, int size>
 class TStack {
-private: 
+private:
     T* _stack;
     int _max_size;
-    int cur;
+    int top;
 
-public: 
-    TStack() {
+public:
+    TStack() : top(-1) {
         _stack = new T[size];
         _max_size = size;
-        cur = -1;
+        top = -1;
     }
+
     ~TStack() {
         delete[] _stack;
     }
-    void push(T elem) {
-        cur++;
-        if (cur >= _max_size) {
+
+    void push(T value) {
+        top++;
+        if (top >= _max_size) {
             return;
         }
-        _stack[cur] = elem;
+        _stack[top] = value;
     }
-    T top() {
-        return _stack[cur];
+    T get() {
+        return _stack[top];
     }
-    void pop() {
-        cur--;
+    T pop() {
+        return top--;
     }
-    bool empty() {
-        return cur == -1;
+    bool isEmpty() const {
+        return top == -1;
     }
 };
 #endif  // INCLUDE_TSTACK_H_

@@ -32,12 +32,10 @@ int eval(std::string post) {
             if (flag_first) {
                 a = t;
                 flag_first = false;
-            }
-            else {
+            } else {
                 b = t;
             }
-        }
-        else {
+        } else {
             if (post[i] == '+')
                 a = a + b;
             if (post[i] == '-')
@@ -64,19 +62,16 @@ std::string infx2pstfx(std::string inf) {
             --i;
             res += " ";
             continue;
-        }
-        else if (inf[i] == '(') {
+        } else if (inf[i] == '(') {
             st.push('(');
-        }
-        else if (inf[i] == ')') {
+        } else if (inf[i] == ')') {
             while (st.top() != '(') {
                 res += st.top();
                 res += " ";
                 st.pop();
             }
             st.pop();
-        }
-        else if (priority_operation(inf[i]) != -1) {
+        } else if (priority_operation(inf[i]) != -1) {
             int cur_priority = priority_operation(inf[i]);
             while (!st.empty() && cur_priority <= priority_operation(st.top())) {
                 res += st.top();

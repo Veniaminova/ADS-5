@@ -8,6 +8,7 @@ int p_o(char c) {
     if (c == '*' || c == '/') return 2;
     return 0;
 }
+
 std::string infx2pstfx(std::string inf) {
     std::string res = "";
     TStack <char, 100> st;
@@ -46,6 +47,7 @@ std::string infx2pstfx(std::string inf) {
     }
     return res;
 }
+
 int eval(std::string post) {
     int a = 0;
     int b = 0;

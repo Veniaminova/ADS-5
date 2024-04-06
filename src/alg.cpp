@@ -10,7 +10,7 @@ int priority_operation(char c) {
 }
 std::string infx2pstfx(std::string inf) {
     string res = "";
-    Stack <char, 100> st;
+    TStack <char, 100> st;
     for (int i = 0; i < inf.size(); ++i) {
         if (isdigit(inf[i])) {
             while (isdigit(inf[i]) && i != inf.size()) {

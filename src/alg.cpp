@@ -86,5 +86,6 @@ int eval(std::string post) {
             if (post[i] == '/')
                 stack1.push(a / b);
         }
+    }
     return stack1.get();
 }
